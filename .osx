@@ -86,6 +86,24 @@ if [[ "$RUN_AS_ROOT" = true ]]; then
   # Disable local Time Machine snapshots
   sudo tmutil disablelocal
 
+  # Exclude docker images and VM's from time machine                                                                         
+  sudo tmutil addexclusion ~/Downloads
+
+  # Exclude non-essential free apps that can be re-installed                                                                 
+  sudo tmutil addexclusion -p /Applications/iMovie.app
+  sudo tmutil addexclusion -p /Applications/GarageBand.app
+  sudo tmutil addexclusion -p /Applications/Atom.app
+  sudo tmutil addexclusion -p /Applications/Spotify.app
+  sudo tmutil addexclusion -p ~/Library/Application Support/Steam
+  # Sleep file in /var/vm                                                                                                    
+  sudo tmutil addexclusion -p /var/vm
+
+  # Caches can be re-built if needed. No need to backup                                                                      
+  sudo tmutil addexclusion -p ~/Library/Caches
+  sudo tmutil addexclusion -p /Library/Caches
+  sudo tmutil addexclusion -p ~/.Trash
+  sudo tmutil addexclusion -p /.Trashes
+
   # Disable hibernation (speeds up entering sleep mode)
   sudo pmset -a hibernatemode 0
 
