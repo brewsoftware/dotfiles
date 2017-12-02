@@ -37,12 +37,6 @@ function route_delete() {
   sudo route delete 10.0.0.0
 }
 
-# Route IRC traffic through one of my servers.
-# Use SOCKS5 settings 'localhost' and 6667 for server/port.
-function irc_proxy() {
-  ssh -vD 6667 geerlingguy@atl1.servercheck.in
-}
-
 # Syntax-highlight code for copying and pasting.
 # Requires highlight (`brew install highlight`).
 function pretty() {
@@ -97,12 +91,6 @@ fi
 
 # Python settings.
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
-
-# Super useful Docker container oneshots.
-# Usage: dockrun, or dockrun [centos7|fedora24|debian8|ubuntu1404|etc.]
-dockrun() {
-  docker run -it geerlingguy/docker-"${1:-ubuntu1604}"-ansible /bin/bash
-}
 
 # Enter a running Docker container.
 function denter() {
